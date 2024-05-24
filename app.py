@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Harvest_hub'  # Replace with a strong secret key
 
 # Connect to the database (replace 'ecommerce.db' with your desired filename)
-conn = sqlite3.connect('Harvest_hub.db')
+conn = sqlite3.connect('Harvest_hub.db', check_same_thread=False)
 cur = conn.cursor()
 
 

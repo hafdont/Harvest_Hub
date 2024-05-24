@@ -1,5 +1,6 @@
--- Create database (replace 'ecommerce.db' with your desired filename)
-CREATE TABLE IF NOT EXISTS Harvest_hub.db;
+-- Create database
+sqlite3 harvest_hub.db
+CREATE DATABASE IF NOT EXISTS Harvest_hub.db;
 
 -- Use the created database
 USE Harvest_hub;
