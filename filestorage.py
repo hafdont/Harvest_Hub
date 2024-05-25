@@ -50,8 +50,17 @@ def process_payment(amount):
     return True
 
 
+#Order status
+def get_status(order_id):
+    try:
+        cur.execute("SELECT status FROM orders WHERE id=?", (order_id,))
+        return cur.fetchone()[0]
+    except sqlite3.Error as e:
+        print(f"Error retrieving order status: {e}")
+        return None
+
+
 def get_current_user():
     if 'user_id' in session:
         return get_user(session['user_id'])
     return None
-
