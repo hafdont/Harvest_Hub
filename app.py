@@ -20,6 +20,11 @@ def signup():
 def login():
     return "login file"
 
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    return "end of session"
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
