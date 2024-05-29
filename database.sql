@@ -14,7 +14,7 @@ CREATE TABLE users (
     email CHAR(10) NOT NULL,
     role CHAR(10) NOT NULL,
     status CHAR(50) NOT NULL,
-    profile_picture IMAGE NOT NULL
+    profile_picture BLOB NOT NULL
 );
 
 
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS products (
   negotiation BOOLEAN NOT NULL,
   price REAL NOT NULL,
   seller_id INTEGER NOT NULL,
-  image_gallery IMAGE,
+  image_gallery BLOB,
   FOREIGN KEY (seller_id) REFERENCES user_(id)
 );
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS orders (
   product_id INTEGER NOT NULL,
   quantity INTEGER NOT NULL,
   order_date TIMESTAMP NOT NULL,
-  total_price INTEGER NOT NULL,
+  total_price REAL NOT NULL,
   
   status TEXT NOT NULL,  -- Add options like 'pending', 'shipped', 'delivered'
   FOREIGN KEY (buyer_id) REFERENCES users(id),
