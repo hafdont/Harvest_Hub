@@ -6,7 +6,7 @@ USE Harvest_hub;
 
 -- Create users table
 CREATE TABLE users (
-    user_id INT NOT NULL,
+    user_id INT NOT NULL PRIMARY KEY,
     username CHAR(10) NOT NULL,
     firstname CHAR(10) NOT NULL,
     lastname CHAR(10) NOT NULL,
