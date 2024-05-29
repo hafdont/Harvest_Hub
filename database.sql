@@ -14,7 +14,7 @@ CREATE TABLE users (
     email CHAR(10) NOT NULL,
     role CHAR(10) NOT NULL,
     status CHAR(50) NOT NULL,
-    profile_picture IMAGE NULL
+    profile_picture IMAGE NOT NULL
 );
 
 
@@ -23,8 +23,12 @@ CREATE TABLE IF NOT EXISTS products (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
   location TEXT NOT NULL,
+  description CHAR(300) NOT NULL,
+  available DATE NOT NULL,
+  negotiation BOOLEAN NOT NULL,
   price REAL NOT NULL,
   seller_id INTEGER NOT NULL,
+  image_gallery IMAGE,
   FOREIGN KEY (seller_id) REFERENCES user_(id)
 );
 
