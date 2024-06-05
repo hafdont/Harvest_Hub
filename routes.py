@@ -47,6 +47,10 @@ def market():
 def product():
     return render_template('product.html')
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
 
 
 if __name__ == '__main__':

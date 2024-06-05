@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+{% block title %}  
+LogIn Page 
+{% endblock %}
+
+{% block content %}
+
+<section class="position-relative pt-32 pb-36 overflow-hidden" style="background: linear-gradient(98.24deg, #FFFFFF 0%, #F9F9FF 47.4%, #EBECF7 100%)">
+    <img class="position-absolute top-50 start-0 translate-middle-y" src="" alt="">
+    <div class="position-relative container" style="z-index: 50;">
+      <div class="row g-16">
+        <div class="col-12 col-md-6">
+          <div class="mw-md-lg">
+            <h2 class="fs-10 mb-3">Join Harvest Hub for free</h2>
+            <p class="fs-17 text-muted mb-12">Where frshnes meets convinience.</p>
+          </div>
+          <form class="mw-md-xl">
+            <div class="row mb-6 g-4">
+              <div class="col-12 col-md-6">
+                <div class="form-group">
+                  <input class="bg-white text-dark px-5 py-4 w-100 border rounded-1" id="signUpInput1-1" style="border-radius: 3px;" type="email" placeholder="First name">
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="form-group">
+                  <input class="bg-white text-dark px-5 py-4 w-100 border rounded-1" id="signUpInput1-2" style="border-radius: 3px;" type="email" placeholder="Last name">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <input class="bg-white text-dark px-5 py-4 w-100 border rounded-1" id="signUpInput1-3" style="border-radius: 3px;" type="email" placeholder="Email address">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <input class="bg-white text-dark px-5 py-4 w-100 border rounded-1" id="signUpInput1-4" style="border-radius: 3px;" type="email" placeholder="Website">
+                </div>
+              </div>
+            </div>
+            <div class="form-check mb-8">
+              <input class="form-check-input" id="signUpInput1-5" type="checkbox" value="">
+              <label class="fs-19 text-dark form-check-label" for="signUpInput1-5">
+                <span>I agree to the</span>
+                <span class="text-secondary">Terms & Conditions</span>
+                <span>of Gradia</span>
+              </label>
+            </div>
+            <button class="btn btn-light-light fs-20 px-9 py-5 text-uppercase" type="submit" style="letter-spacing: 1px; background: linear-gradient(98.24deg, #CEE9C1 0%, #83C8DE 100%);">Sign up for free</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}
