@@ -1,16 +1,23 @@
 from flask import Flask
 from flask_sqlalchemy  import SQLAlchemy
+from dotenv import load_dotenv
 import os
+
 
 app = Flask(__name__)
 
-from dotenv import load_dotenv
 load_dotenv()
-
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
+
+
+
+from models import User, Product, Order
+
+with app.app_context():
+    db.create_all()
 
 from routes import *
 
