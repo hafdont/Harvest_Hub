@@ -5,29 +5,49 @@ LogIn Page
 
 {% block content %}
 
-
-
 <section class="pt-16 pb-32">
     <div class="container">
       <div class="mw-md mx-auto text-center col-lg-6 col-md-8 col-8">
         <h3 class="mb-1 mt-3">Welcome Back</h3>
         <h4>to</h4>
         <h3>Harvest Hub</h3>
+
+            <!-- Flash Messages Section -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+      {% endif %}
+      {% endwith %}
+
+
+
         <p class="fs-8 text-secondary mb-12">Log into Harvest Hub today and enjoy fresh farm produce from all over KEnya</p>
-        <form action="">
+        <form action="{{ url_for('login') }}" method="POST">
           <div class="mb-5">
-            <input class="form-control" type="email" placeholder="Email address">
+            <input class="form-control" type="text" placeholder="Email address or Username" id="email" name="email">
           </div>
           <div class="mb-5 position-relative">
-            <input class="form-control" type="password" placeholder="Password">
-            <a class="position-absolute top-50 end-0 me-4 translate-middle-y btn p-0 btn-link fs-9" href="#">Forgot Password?</a>
+            <input class="form-control" type="password" placeholder="Password" name="password" id="password" required>
           </div>
-          <a class="btn w-100 mb-8 btn-primary shadow" href="#">Sign In</a>
+          <div class="">
+            <button type="submit" class="btn mb-8 btn-primary shadow" >Sign In</a>
+
+          </div>
+          
           <p class="d-flex flex-wrap align-items-center justify-content-center">
             <span class="me-1">Don't have an account?</span>
             <a class="btn px-0 btn-link fw-bold" href="{{url_for('signup')}}">Create free account</a>
           </p>
         </form>
+
+
+
       </div>
     </div>
   </section>
