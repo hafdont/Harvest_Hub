@@ -5,6 +5,7 @@ from flask import session, redirect, url_for, flash
 import os
 from flask_migrate import Migrate
 
+
 app = Flask(__name__)
 # Set the secret key
 app.secret_key = os.urandom(24)
