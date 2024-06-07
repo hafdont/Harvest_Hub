@@ -14,7 +14,7 @@ def index():
             # ...
             #if login_successful:  # Check for successful login
                 #session['logged_in'] = True  # Set session variable
-            return render_template('users/home.html')  # Redirect to appropriate page
+            return render_template('users.html')  # Redirect to appropriate page
 
         elif action == 'register':
             # Handle registration form submission
@@ -46,7 +46,6 @@ def market():
 @app.route('/product', methods=['GET', 'POST'])
 def product():
     return render_template('product.html')
-
 
 
 if __name__ == '__main__':
