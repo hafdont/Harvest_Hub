@@ -20,6 +20,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              {% if session.get('user_id') %}
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="{{url_for('user')}}" >Home</a>
@@ -29,10 +30,32 @@
                 </li>
 
               </ul>
-              <a  href="{{url_for('login')}}"  type="button" class="btn btn-primary">
-                Log in
-              </a>
-            
+              {% endif %}
+
+                  {% if session.get('user_id') %}
+                  <div class="">
+                    <a  href=""  type="button" class="btn btn-primary">
+                      Cart
+                    </a>
+                  </div>
+                  
+                  <div class="">
+                    <a  href=""  type="button" class="btn btn-primary">
+                      Log out
+                    </a>
+                  </div>
+
+
+                  {% else %}
+
+                  <div class="mr-1 ml-2">
+                    <a  href="{{url_for('login')}}"  type="button" class="btn btn-primary">
+                      Log in
+                    </a>
+                  </div>
+
+
+                  {% endif %}
             </div>
           </div>
         </nav>

@@ -9,6 +9,10 @@ def index():
 
 @app.route('/user', methods=['GET', 'POST'])
 def user():
+    # Check if user is logged in
+    if 'user_id' not in session:
+        flash('You must be logged in to access the marketplace.', 'error')
+        return redirect(url_for('index'))
     return render_template('user.html')
 
 @app.route('/market', methods=['GET', 'POST'])
@@ -29,36 +33,8 @@ def product():
 
     return render_template('market.html')
 
-@app.route('/login', methods=['GET','POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    # Check if signup was successful and display flash message
-    if 'signup_success' in session:
-        flash('Signup Successful! You can now log in.', 'success')
-        session.pop('signup_success', None)  # Remove the flag after displaying
-
-    if request.method == 'POST':
-        email_or_username = request.form.get('email')  # Using 'email' input for both email or username
-        password = request.form.get('password')
-
-        if not email_or_username or not password:
-            flash('Both fields are required.', 'error')
-            return redirect(url_for('login'))
-
-        user = User.query.filter((User.email == email_or_username) | (User.username == email_or_username)).first()
-
-        if user and bcrypt.checkpw(password.encode('utf-8'), user.password):
-            # Set session variables for logged in user
-            session['user_id'] = user.user_id
-            session['username'] = user.username
-            session['role'] = user.role
-
-            flash('Login successful!', 'success')
-            return redirect(url_for('market'))  # Redirect to the marketplace
-
-        else:
-            flash('Invalid credentials. Please try again.', 'error')
-
-    return render_template('login.html')
     # Check if signup was successful and display flash message
     if 'signup_success' in session:
         flash('Signup Successful! You can now log in.', 'success')
