@@ -6,7 +6,7 @@ class User(db.Model):
     username = db.Column(db.String(10), nullable=False)
     firstname = db.Column(db.String(10), nullable=False)
     lastname = db.Column(db.String(10), nullable=False)
-    password = db.Column(db.String(10), nullable=False)
+    password = db.Column(db.LargeBinary, nullable=False)
     email = db.Column(db.String(10), nullable=False)
     role = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(50), nullable=True)
