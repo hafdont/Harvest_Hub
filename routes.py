@@ -2,6 +2,7 @@ from flask import render_template, request, flash, redirect, url_for, session
 import bcrypt 
 from app import app, db
 from models import User, Product
+import base64
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
