@@ -4,14 +4,19 @@ from app import db
 
 class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(10), nullable=False)
-    firstname = db.Column(db.String(10), nullable=False)
-    lastname = db.Column(db.String(10), nullable=False)
+    username = db.Column(db.String(50), nullable=False, unique=True)  
+    firstname = db.Column(db.String(50), nullable=False)  
+    lastname = db.Column(db.String(50), nullable=False)  
     password = db.Column(db.LargeBinary, nullable=False)
-    email = db.Column(db.String(10), nullable=False)
+    email = db.Column(db.String(120), nullable=False, unique=True)  
     role = db.Column(db.String(10), nullable=False)
     status = db.Column(db.String(50), nullable=True)
-    profile_picture = db.Column(db.BLOB, nullable=True)
+    profile_picture = db.Column(db.LargeBinary, nullable=True)  
+    city = db.Column(db.String(50), nullable=True)
+    postal_code = db.Column(db.String(20), nullable=True)
+    country = db.Column(db.String(50), nullable=True)
+    phone_number = db.Column(db.String(15), nullable=True)
+    bio = db.Column(db.Text, nullable=True)
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)

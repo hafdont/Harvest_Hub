@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}  
+Update Profile
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row d-flex">
+        <h1>Update User Info</h1>
+        <div class="d-flex col-lg-8">
+            <form class="mw-md-xl justify-content-center" action="{{ url_for('update_profile') }}" method="POST" enctype="multipart/form-data">
+                <div class="row mb-6 g-4">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="firstname"> First Name</label>
+                            <input class="bg-white text-dark px-3 py-2 w-100 border rounded-1" id="firstname" name="firstname" style="border-radius: 3px;" required type="text" placeholder="First name" value="{{ user.firstname }}">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="lastname">Last Name</label>
+                            <input class="bg-white text-dark px-3 py-2 w-100 border rounded-1" id="lastname" name="lastname" style="border-radius: 3px;" type="text" placeholder="Last name" value="{{ user.lastname }}">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="email">Email Addy</label>
+                            <input class="bg-white text-dark px-3 py-2 w-100 border rounded-1" id="email" name="email" style="border-radius: 3px;" type="email" placeholder="Email address" value="{{ user.email }}">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="username">Unique Username</label>
+                            <input class="bg-white text-dark px-3 py-2 w-100 border rounded-1" id="username" name="username" style="border-radius: 3px;" type="text" placeholder="Unique Username" value="{{ user.username }}">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="city"> City</label>
+                            <input class="bg-white text-dark px-3 py-2 w-100 border rounded-1" id="city" name="city" style="border-radius: 3px;" type="text" placeholder="City of Operations" value="{{ user.city }}">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="postal_code"> Postal Code</label>
+                            <input class="bg-white text-dark px-3 py-2 w-100 border rounded-1" id="postal_code" name="postal_code" style="border-radius: 3px;" type="text" placeholder="Postal Code" value="{{ user.postal_code }}">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <input class="bg-white text-dark px-3 py-2 w-100 border rounded-1" id="country" name="country" style="border-radius: 3px;" type="text" placeholder="Country" value="{{ user.country }}">
+                        </div>
+                    </div>
+                    <div class="col-12"> 
+                        <div class="form-group">
+                            <label for="phone_number">Phone Number</label>
+                            <input class="bg-white text-dark px-3 py-2 w-100 border rounded-1" id="phone_number" name="phone_number" style="border-radius: 3px;" type="text" placeholder="Phone number" value="{{ user.phone_number }}">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="bio">Something Brief about Yourself</label>
+                            <input class="bg-white text-dark px-3 py-2 w-100 border rounded-1" id="bio" name="bio" style="border-radius: 3px;" type="text" placeholder="Bio" value="{{ user.bio }}">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="profile_picture">Profile Picture</label>
+                            <input class="bg-white text-dark px-3 py-2 w-100 border rounded-1" id="profile_picture" name="profile_picture" style="border-radius: 3px;" type="file">
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-1 mb-1">
+                    <button class="btn btn-light-light fs-20 px-3 py-3 text-uppercase" type="submit" style="letter-spacing: 1px; background: linear-gradient(98.24deg, #CEE9C1 0%, #83C8DE 100%);">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

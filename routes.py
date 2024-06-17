@@ -14,7 +14,17 @@ def user():
     if 'user_id' not in session:
         flash('You must be logged in to access the marketplace.', 'error')
         return redirect(url_for('index'))
-    return render_template('user.html')
+    
+    # Fetch user details from the database
+    user_id = session['user_id']
+    user_details = User.query.get(user_id)
+    
+    if not user_details:
+        flash('User not found.', 'error')
+        return redirect(url_for('index'))
+    
+    # Pass user details to the template
+    return render_template('user.html', user=user_details)
 
 @app.route('/market', methods=['GET'])
 def market():
@@ -74,7 +84,7 @@ def signup():
             firstname = request.form.get('firstname')
             lastname = request.form.get('lastname')
             email = request.form.get('email')
-            username = request.form.get('username4')
+            username = request.form.get('username')
             password = request.form.get('password')
             role = request.form.get('role')
 
@@ -95,6 +105,11 @@ def signup():
             # Generate user ID
             user_count = User.query.count()
             user_id = f"hh{user_count + 1:010}"
+
+            # Ensure uniqueness of user_id
+            while User.query.filter_by(user_id=user_id).first() is not None:
+                user_count += 1
+                user_id = f"hh{user_count + 1:010}"
 
             # Hash password
             hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
@@ -171,3 +186,62 @@ def create_product():
         return redirect(url_for('market'))
 
     return render_template('productscreate.html')
+
+
+@app.route('/update_profile', methods=['GET', 'POST'])
+def update_profile():
+    if 'user_id' not in session:
+        flash('You need to be logged in to update your profile.', 'error')
+        return redirect(url_for('login'))
+
+    # Fetch the current user using the user_id from session
+    user_id = session['user_id']
+    user = User.query.filter_by(user_id=user_id).first()
+
+    if not user:
+        flash('User not found.', 'error')
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        try:
+            # Debug: Log received form data
+            app.logger.debug('Received form data: %s', request.form)
+
+            # Update user details only if they are provided
+            if 'firstname' in request.form:
+                user.firstname = request.form.get('firstname')
+            if 'lastname' in request.form:
+                user.lastname = request.form.get('lastname')
+            if 'email' in request.form:
+                user.email = request.form.get('email')
+            if 'username' in request.form:
+                user.username = request.form.get('username')
+            if 'city' in request.form:
+                user.city = request.form.get('city')
+            if 'postal_code' in request.form:
+                user.postal_code = request.form.get('postal_code')
+            if 'country' in request.form:
+                user.country = request.form.get('country')
+            if 'phone_number' in request.form:
+                user.phone_number = request.form.get('phone_number')
+            if 'bio' in request.form:
+                user.bio = request.form.get('bio')
+
+            # Handle profile picture upload if provided
+            if 'profile_picture' in request.files:
+                profile_picture = request.files['profile_picture']
+                if profile_picture.filename != '':
+                    user.profile_picture = profile_picture.read()
+
+            # Debug: Log user object before committing
+            app.logger.debug('User object before committing: %s', user)
+
+            db.session.commit()
+            flash('Profile updated successfully!', 'success')
+            return redirect(url_for('user'))  # Redirect to user profile page
+        except Exception as e:
+            db.session.rollback()  # Rollback in case of error
+            app.logger.error('An error occurred while updating the profile: %s', e)
+            flash('An error occurred while updating your profile. Please try again.', 'error')
+
+    return render_template('updateProfile.html', user=user)
