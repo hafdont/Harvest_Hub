@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
 import pymysql
+import base64
 
 # Initialize pymysql
 pymysql.install_as_MySQLdb()
@@ -24,6 +25,13 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # Initialize SQLAlchemy and Flask-Migrate
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
+# Define the base64 encoding filter
+def b64encode(data):
+    return base64.b64encode(data).decode('utf-8')
+
+# Register the filter with Jinja2
+app.jinja_env.filters['b64encode'] = b64encode
 
 # Import models
 from models import User, Product, Order
