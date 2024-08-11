@@ -31,7 +31,7 @@ class Product(db.Model):
     quantity = db.Column(db.Float, nullable=False)  # The amount of product available
     is_organic = db.Column(db.Boolean, default=False, nullable=False)
     category = db.Column(db.String(50), nullable=False)  # e.g., Fruit, Vegetable, Dairy
-    seller_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    seller_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)
     image_gallery = db.Column(db.LargeBinary, nullable=True)  # Assuming a single image for simplicity
     seller = db.relationship('User', backref=db.backref('products', lazy=True))
 
