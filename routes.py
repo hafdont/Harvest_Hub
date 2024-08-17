@@ -164,29 +164,44 @@ def create_product():
         name = request.form.get('name')
         location = request.form.get('location')
         description = request.form.get('description')
-        available = request.form.get('available')
+        available_from = request.form.get('available_from')
+        available_to = request.form.get('available_to')
         negotiation = bool(request.form.get('negotiation'))
-        price = request.form.get('price')
+        price_per_unit = float(request.form.get('price_per_unit'))
+        unit_of_measure = request.form.get('unit_of_measure')
+        quantity = float(request.form.get('quantity'))
+        is_organic = bool(request.form.get('is_organic'))
+        category = request.form.get('category')
         seller_id = session['user_id']
         image_gallery = request.files.get('image_gallery').read() if request.files.get('image_gallery') else None
+
+        # Convert date strings to datetime.date objects if provided
+        from datetime import datetime
+        available_from_date = datetime.strptime(available_from, '%Y-%m-%d').date() if available_from else None
+        available_to_date = datetime.strptime(available_to, '%Y-%m-%d').date() if available_to else None
 
         new_product = Product(
             name=name,
             location=location,
             description=description,
-            available=available,
+            available_from=available_from_date,
+            available_to=available_to_date,
             negotiation=negotiation,
-            price=price,
+            price_per_unit=price_per_unit,
+            unit_of_measure=unit_of_measure,
+            quantity=quantity,
+            is_organic=is_organic,
+            category=category,
             seller_id=seller_id,
             image_gallery=image_gallery
         )
+
         db.session.add(new_product)
         db.session.commit()
         flash('Product created successfully!', 'success')
         return redirect(url_for('market'))
 
     return render_template('productscreate.html')
-
 
 @app.route('/update_profile', methods=['GET', 'POST'])
 def update_profile():

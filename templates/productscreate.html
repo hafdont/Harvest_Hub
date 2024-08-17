@@ -11,21 +11,44 @@ Create Product
         <h1>Create Product</h1>
         <form method="POST" enctype="multipart/form-data" action="{{ url_for('create_product') }}">
             <label for="name">Product Name:</label><br>
-            <input type="text" id="name" name="name"><br>
+            <input type="text" id="name" name="name" required><br>
+            
             <label for="location">Location:</label><br>
-            <input type="text" id="location" name="location"><br>
+            <input type="text" id="location" name="location" required><br>
+            
             <label for="description">Description:</label><br>
-            <textarea id="description" name="description"></textarea><br>
-            <label for="available">Available Date:</label><br>
-            <input type="date" id="available" name="available"><br>
+            <textarea id="description" name="description" required></textarea><br>
+            
+            <label for="available_from">Available From:</label><br>
+            <input type="date" id="available_from" name="available_from" required><br>
+            
+            <label for="available_to">Available To:</label><br>
+            <input type="date" id="available_to" name="available_to"><br>
+            
             <label for="negotiation">Negotiation:</label><br>
             <input type="checkbox" id="negotiation" name="negotiation"><br>
-            <label for="price">Price:</label><br>
-            <input type="number" id="price" name="price" step="0.01"><br>
+            
+            <label for="price_per_unit">Price per Unit:</label><br>
+            <input type="number" id="price_per_unit" name="price_per_unit" step="0.01" required><br>
+            
+            <label for="unit_of_measure">Unit of Measure:</label><br>
+            <input type="text" id="unit_of_measure" name="unit_of_measure" required><br>
+            
+            <label for="quantity">Quantity:</label><br>
+            <input type="number" id="quantity" name="quantity" step="0.01" required><br>
+            
+            <label for="is_organic">Is Organic:</label><br>
+            <input type="checkbox" id="is_organic" name="is_organic"><br>
+            
+            <label for="category">Category:</label><br>
+            <input type="text" id="category" name="category" required><br>
+            
             <label for="image_gallery">Image:</label><br>
             <input type="file" id="image_gallery" name="image_gallery"><br>
-            <input type="submit">
+            
+            <input type="submit" value="Submit">
         </form>
+        
     </div>
 </div>
 
